@@ -1570,12 +1570,14 @@ void CDuiRichEdit::ReplaceSel(LPCTSTR lpszNewText, bool bCanUndo)
 #ifdef _UNICODE		
     TxSendMessage(EM_REPLACESEL, (WPARAM) bCanUndo, (LPARAM)lpszNewText, 0); 
 #else
-    int iLen = _tcslen(lpszNewText);
-    LPWSTR lpText = new WCHAR[iLen + 1];
-    ::ZeroMemory(lpText, (iLen + 1) * sizeof(WCHAR));
-    ::MultiByteToWideChar(CP_ACP, 0, lpszNewText, -1, (LPWSTR)lpText, iLen) ;
-    TxSendMessage(EM_REPLACESEL, (WPARAM) bCanUndo, (LPARAM)lpText, 0); 
-    delete[] lpText;
+	//int iLen = _tcslen(lpszNewText);
+	//LPWSTR lpText = new WCHAR[iLen + 1];
+	//::ZeroMemory(lpText, (iLen + 1) * sizeof(WCHAR));
+	//::MultiByteToWideChar(CP_ACP, 0, lpszNewText, -1, (LPWSTR)lpText, iLen) ;
+	//TxSendMessage(EM_REPLACESEL, (WPARAM) bCanUndo, (LPARAM)lpText, 0); 
+	//delete[] lpText;
+	//这里是不需要转码的
+	TxSendMessage(EM_REPLACESEL, (WPARAM) bCanUndo, (LPARAM)lpszNewText, 0); 
 #endif
 }
 
